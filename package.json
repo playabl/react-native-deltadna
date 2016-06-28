@@ -12,5 +12,6 @@
     "android",
     "ios",
     "deltadna"
-  ]
+  ],
+  "devDependencies": {}
 }
