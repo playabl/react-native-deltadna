@@ -10,7 +10,7 @@
     "react-component",
     "react-native",
     "android",
-    "ios"
+    "ios",
     "deltadna"
-  ],
+  ]
 }
