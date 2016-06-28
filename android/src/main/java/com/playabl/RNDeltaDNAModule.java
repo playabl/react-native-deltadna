@@ -10,7 +10,7 @@ import com.facebook.react.bridge.ReadableMap;
 import com.facebook.react.bridge.ReadableArray;
 import com.facebook.react.bridge.Callback;
 
-public class RNShareModule extends ReactContextBaseJavaModule {
+public class RNDeltaDNAModule extends ReactContextBaseJavaModule {
 
   private final ReactApplicationContext reactContext;
 
