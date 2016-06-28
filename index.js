@@ -1,2 +1,5 @@
-var { NativeModules } = require('react-native');
-module.exports = NativeModules.RNDeltaDNA;
+import { NativeModules } from 'react-native';
+
+const { RNDeltaDNA } = NativeModules;
+
+export default RNDeltaDNA;
