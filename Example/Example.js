@@ -5,8 +5,6 @@ import DeltaDNA from 'react-native-deltadna';
 
 import credentials from './credentials.json';
 
-console.log(credentials);
-
 const Example = () => {
   const onStartSDK = () => DeltaDNA.start(credentials);
   const onStopSDK = () => DeltaDNA.stop();
