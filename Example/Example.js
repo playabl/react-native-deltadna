@@ -3,10 +3,12 @@ import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 
 import DeltaDNA from 'react-native-deltadna';
 
-import credientials from './credentials.json';
+import credentials from './credentials.json';
+
+console.log(credentials);
 
 const Example = () => {
-  const onStartSDK = () => DeltaDNA.start(credientials);
+  const onStartSDK = () => DeltaDNA.start(credentials);
   const onStopSDK = () => DeltaDNA.stop();
   const onNewSession = () => DeltaDNA.newSession();
   const onUpload = () => DeltaDNA.upload();
