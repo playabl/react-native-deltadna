@@ -5,7 +5,7 @@
 
 @implementation RNDeltaDNA
 
-- (dispatch_queue_t)methodQueue
+- (dispatch_queue_t) methodQueue
 {
     return dispatch_get_main_queue();
 }
@@ -70,15 +70,21 @@ RCT_EXPORT_METHOD(recordEvent: (NSDictionary *) eventDict)
 {
     DDNAEvent *event = [DDNAEvent eventWithName:eventDict[@"name"]];
 
-    if (eventDict[@"params"] != nil) {
-        for (NSString *key in [eventDict[@"params"] allKeys]) {
-            [event setParam:eventDict[@"params"][key] forKey:key];
+    NSDictionary *paramsDict = eventDict[@"params"];
+
+    if (paramsDict != nil) {
+        for (NSString *key in paramsDict) {
+            id value = [paramsDict objectForKey:key];
+            [event setParam:value forKey:key];
         }
     }
 
-    if (eventDict[@"values"] != nil) {
-        for (NSString *key in [eventDict[@"values"] allKeys]) {
-            [event setValue:eventDict[@"values"][key] forKey:key];
+    NSDictionary *valuesDict = eventDict[@"values"];
+
+    if (valuesDict != nil) {
+        for (NSString *key in valuesDict) {
+            id value = [valuesDict objectForKey:key];
+            [event setValue:value forKey:key];
         }
     }
 
@@ -94,15 +100,21 @@ RCT_EXPORT_METHOD(engage: (NSDictionary *) engageDict callback:(RCTResponseSende
 {
     DDNAEngagement *engagement = [DDNAEngagement engagementWithDecisionPoint:engageDict[@"name"]];
 
-    if (engageDict[@"params"] != nil) {
-        for (NSString *key in [engageDict[@"params"] allKeys]) {
-            [engagement setParam:engageDict[@"params"][key] forKey:key];
+    NSDictionary *paramsDict = engageDict[@"params"];
+
+    if (paramsDict != nil) {
+        for (NSString *key in paramsDict) {
+            id value = [paramsDict objectForKey:key];
+            [engagement setParam:value forKey:key];
         }
     }
 
-    if (engageDict[@"values"] != nil) {
-        for (NSString *key in [engageDict[@"values"] allKeys]) {
-            [engagement setValue:engageDict[@"values"][key] forKey:key];
+    NSDictionary *valuesDict = engageDict[@"values"];
+
+    if (valuesDict != nil) {
+        for (NSString *key in valuesDict) {
+            id value = [valuesDict objectForKey:key];
+            [engagement setValue:value forKey:key];
         }
     }
 
