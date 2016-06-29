@@ -1,4 +1,4 @@
-package com.playabl;
+package com.playabl.deltadna;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -13,7 +13,7 @@ import com.facebook.react.bridge.JavaScriptModule;
 public class RNDeltaDNAPackage implements ReactPackage {
     @Override
     public List<NativeModule> createNativeModules(ReactApplicationContext reactContext) {
-      return Arrays.<NativeModule>asList(new RNShareModule(reactContext));
+      return Arrays.<NativeModule>asList(new RNDeltaDNAModule(reactContext));
     }
 
     @Override

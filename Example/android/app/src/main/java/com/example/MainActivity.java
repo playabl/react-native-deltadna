@@ -1,7 +1,7 @@
 package com.example;
 
 import com.facebook.react.ReactActivity;
-import com.playabl.RNDeltaDNAPackage;
+import com.playabl.deltadna.RNDeltaDNAPackage;
 import com.facebook.react.ReactPackage;
 import com.facebook.react.shell.MainReactPackage;
 
