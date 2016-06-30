@@ -6,6 +6,7 @@
     "type": "git",
     "url": "git+https://github.com/playabl/react-native-deltadna.git"
   },
+  "main": "index.js",
   "keywords": [
     "react-component",
     "react-native",

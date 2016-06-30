@@ -14,6 +14,7 @@ import com.facebook.react.bridge.Callback;
 public class RNDeltaDNAModule extends ReactContextBaseJavaModule {
 
   private final ReactApplicationContext reactContext;
+  private boolean isInitialized = false;
 
   public RNDeltaDNAModule(ReactApplicationContext reactContext) {
     super(reactContext);
@@ -27,6 +28,16 @@ public class RNDeltaDNAModule extends ReactContextBaseJavaModule {
 
   @ReactMethod
   public void start(ReadableMap options) {
+    if (!isInitialized) {
+      DDNA.initialise(new DDNA.Configuration(
+        getCurrentActivity().getApplication(),
+        options.getString("environmentKey"),
+        options.getString("collectURL"),
+        options.getString("engageURL")));
+
+      isInitialized = true;
+    }
+
     DDNA.instance().startSdk();
   }
 
