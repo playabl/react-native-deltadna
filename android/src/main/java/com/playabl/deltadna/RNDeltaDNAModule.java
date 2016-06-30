@@ -1,6 +1,7 @@
 package com.playabl.deltadna;
 
 import com.deltadna.android.sdk.DDNA;
+import com.deltadna.android.sdk.Event;
 
 import android.content.ActivityNotFoundException;
 
@@ -47,9 +48,49 @@ public class RNDeltaDNAModule extends ReactContextBaseJavaModule {
   }
 
   @ReactMethod
+  public void newSession() {
+    DDNA.instance().newSession();
+  }
+
+  @ReactMethod
+  public void clearPersistentData() {
+    DDNA.instance().clearPersistentData();
+  }
+
+  @ReactMethod
   public void upload() {
     DDNA.instance().upload();
   }
+
+  @ReactMethod
+  public void recordEvent(ReadableMap options) {
+    Event ev = new Event(options.getString("name"));
+
+    if (hasValidKey("params", options)) {
+      ReadableMap params = options.getMap("params");
+
+      ReadableMapKeySetIterator iterator = params.keySetIterator();
+      if (iterator.hasNextKey()) {
+        while (iterator.hasNextKey()) {
+          String key = iterator.nextKey();
+          ev.putParam(key, RNConvertUtils.readableMapToJSONObject(params.getMap(key)));
+        }
+      }
+    }
+
+    DDNA.instance().recordEvent(ev);
+  }
+
+  @ReactMethod
+  public void recordPushNotification(ReadableMap options, boolean launch) {
+    DDNA.instance().recordNotificationOpened(launch);
+  }
+
+  @ReactMethod
+  public void engage(ReadableMap options, Callback callback) {
+
+  }
+
 
   /**
    * Checks if a given key is valid
