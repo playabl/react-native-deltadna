@@ -2,6 +2,7 @@ package com.playabl.deltadna;
 
 import com.deltadna.android.sdk.DDNA;
 import com.deltadna.android.sdk.Event;
+import com.deltadna.android.sdk.Params;
 import com.deltadna.android.sdk.Engagement;
 import com.deltadna.android.sdk.listeners.EngageListener;
 
@@ -71,22 +72,13 @@ public class RNDeltaDNAModule extends ReactContextBaseJavaModule {
 
   @ReactMethod
   public void recordEvent(ReadableMap options) {
-    Event ev = new Event(options.getString("name"));
+    Event ev;
 
     if (hasValidKey("params", options)) {
-      ReadableMap params = options.getMap("params");
-
-      ReadableMapKeySetIterator iterator = params.keySetIterator();
-      if (iterator.hasNextKey()) {
-        while (iterator.hasNextKey()) {
-          try {
-            String key = iterator.nextKey();
-            ev.putParam(key, RNConvertUtils.readableMapToJsonObject(params.getMap(key)));
-          } catch (JSONException exception) {
-            Log.e(TAG, "Error converting params object");
-          }
-        }
-      }
+      ev = new Event(options.getString("name"), new Params(options.getMap("params")))
+      ReadableMap params = RNConvertUtils.readableMapToJsonObject(options.getMap("params"));
+    } else {
+      ev = new Event(options.getString("name"));
     }
 
     DDNA.instance().recordEvent(ev);
