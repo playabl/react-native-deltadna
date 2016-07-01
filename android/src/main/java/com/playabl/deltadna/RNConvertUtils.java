@@ -1,5 +1,15 @@
 package com.playabl.deltadna;
 
+import android.support.annotation.Nullable;
+
+import org.json.JSONObject;
+import org.json.JSONArray;
+import org.json.JSONException;
+
+import com.facebook.react.bridge.ReadableMap;
+import com.facebook.react.bridge.ReadableArray;
+import com.facebook.react.bridge.ReadableMapKeySetIterator;
+
 public class RNConvertUtils {
   @Nullable
   public static JSONObject readableMapToJsonObject(@Nullable ReadableMap readableMap) throws JSONException {
@@ -30,10 +40,10 @@ public class RNConvertUtils {
           object.put(key, readableMap.getString(key));
           break;
         case Map:
-          object.put(key, RNConvertUtils.readableMapToJsonObject(readableMap.getMap(key)));
+          object.put(key, readableMapToJsonObject(readableMap.getMap(key)));
           break;
         case Array:
-          object.put(key, RNConvertUtils.readableArrayToJsonObject(readableMap.getArray(key)));
+          object.put(key, readableArrayToJsonObject(readableMap.getArray(key)));
           break;
         default:
           throw new IllegalArgumentException("Could not convert object with key: " + key + ".");
@@ -45,12 +55,12 @@ public class RNConvertUtils {
 
   @Nullable
   public static JSONArray readableArrayToJsonObject(@Nullable ReadableArray readableArray) throws JSONException {
-    if (readableMap == null) {
+    if (readableArray == null) {
       return null;
     }
 
     JSONArray array = new JSONArray();
-    if (readableArray.size() === 0) {
+    if (readableArray.size() == 0) {
       return null;
     }
 
@@ -68,10 +78,10 @@ public class RNConvertUtils {
           array.put(readableArray.getString(i));
           break;
         case Map:
-          array.put(convertMapToJson(readableArray.getMap(i)));
+          array.put(readableMapToJsonObject(readableArray.getMap(i)));
           break;
         case Array:
-          array.put(convertArrayToJson(readableArray.getArray(i)));
+          array.put(readableArrayToJsonObject(readableArray.getArray(i)));
           break;
         default:
           // Fail silently

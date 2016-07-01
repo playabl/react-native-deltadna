@@ -2,18 +2,25 @@ package com.playabl.deltadna;
 
 import com.deltadna.android.sdk.DDNA;
 import com.deltadna.android.sdk.Event;
+import com.deltadna.android.sdk.Engagement;
+import com.deltadna.android.sdk.listeners.EngageListener;
 
 import android.content.ActivityNotFoundException;
+import android.util.Log;
+
+import org.json.JSONException;
 
 import com.facebook.react.bridge.ReactApplicationContext;
 import com.facebook.react.bridge.ReactContextBaseJavaModule;
 import com.facebook.react.bridge.ReactMethod;
 import com.facebook.react.bridge.ReadableMap;
 import com.facebook.react.bridge.ReadableArray;
+import com.facebook.react.bridge.ReadableMapKeySetIterator;
 import com.facebook.react.bridge.Callback;
 
 public class RNDeltaDNAModule extends ReactContextBaseJavaModule {
 
+  private final String TAG = "RNDeltaDNA";
   private final ReactApplicationContext reactContext;
   private boolean isInitialized = false;
 
@@ -72,8 +79,12 @@ public class RNDeltaDNAModule extends ReactContextBaseJavaModule {
       ReadableMapKeySetIterator iterator = params.keySetIterator();
       if (iterator.hasNextKey()) {
         while (iterator.hasNextKey()) {
-          String key = iterator.nextKey();
-          ev.putParam(key, RNConvertUtils.readableMapToJSONObject(params.getMap(key)));
+          try {
+            String key = iterator.nextKey();
+            ev.putParam(key, RNConvertUtils.readableMapToJsonObject(params.getMap(key)));
+          } catch (JSONException exception) {
+            Log.e(TAG, "Error converting params object");
+          }
         }
       }
     }
@@ -88,9 +99,45 @@ public class RNDeltaDNAModule extends ReactContextBaseJavaModule {
 
   @ReactMethod
   public void engage(ReadableMap options, Callback callback) {
+    Engagement engagement = new Engagement(options.getString("name"));
 
+    if (hasValidKey("params", options)) {
+      ReadableMap params = options.getMap("params");
+
+      ReadableMapKeySetIterator iterator = params.keySetIterator();
+      if (iterator.hasNextKey()) {
+        while (iterator.hasNextKey()) {
+          try {
+            String key = iterator.nextKey();
+            engagement.putParam(key, RNConvertUtils.readableMapToJsonObject(params.getMap(key)));
+          } catch (JSONException exception) {
+            Log.e(TAG, "Error converting params object");
+          }
+        }
+      }
+    }
+
+    DDNA.instance().requestEngagement(engagement, new EngageListenerCallback(callback));
   }
 
+
+  private class EngageListenerCallback implements EngageListener<Engagement> {
+    private Callback callback;
+
+    EngageListenerCallback(Callback callback) {
+      this.callback = callback;
+    }
+
+    @Override
+    public void onCompleted(Engagement engagement) {
+      callback.invoke(engagement.getJson());
+    }
+
+    @Override
+    public void onError(Throwable t) {
+      Log.w(TAG, "Engagement error");
+    }
+  }
 
   /**
    * Checks if a given key is valid
