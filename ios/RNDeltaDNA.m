@@ -93,7 +93,9 @@ RCT_EXPORT_METHOD(recordEvent: (NSDictionary *) eventDict)
 
 RCT_EXPORT_METHOD(recordPushNotification: (NSDictionary *) payload didLaunch: (BOOL) didLaunch)
 {
-    [[DDNASDK sharedInstance] recordPushNotification:payload didLaunch:didLaunch];
+    if (payload != nil) {
+        [[DDNASDK sharedInstance] recordPushNotification:payload didLaunch:didLaunch];
+    }
 }
 
 RCT_EXPORT_METHOD(engage: (NSDictionary *) engageDict callback:(RCTResponseSenderBlock)callback)
