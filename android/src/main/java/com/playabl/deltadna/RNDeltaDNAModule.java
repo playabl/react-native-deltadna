@@ -9,14 +9,13 @@ import com.deltadna.android.sdk.listeners.EngageListener;
 import android.content.ActivityNotFoundException;
 import android.util.Log;
 
+import org.json.JSONObject;
 import org.json.JSONException;
 
 import com.facebook.react.bridge.ReactApplicationContext;
 import com.facebook.react.bridge.ReactContextBaseJavaModule;
 import com.facebook.react.bridge.ReactMethod;
 import com.facebook.react.bridge.ReadableMap;
-import com.facebook.react.bridge.ReadableArray;
-import com.facebook.react.bridge.ReadableMapKeySetIterator;
 import com.facebook.react.bridge.Callback;
 
 public class RNDeltaDNAModule extends ReactContextBaseJavaModule {
@@ -72,11 +71,15 @@ public class RNDeltaDNAModule extends ReactContextBaseJavaModule {
 
   @ReactMethod
   public void recordEvent(ReadableMap options) {
-    Event ev;
+    Event ev = null;
 
     if (hasValidKey("params", options)) {
-      ev = new Event(options.getString("name"), new Params(options.getMap("params")))
-      ReadableMap params = RNConvertUtils.readableMapToJsonObject(options.getMap("params"));
+      try {
+        JSONObject params = RNConvertUtils.readableMapToJsonObject(options.getMap("params"));
+        ev = new Event(options.getString("name"), new Params(params));
+      } catch (JSONException exception) {
+        Log.e(TAG, "Error converting params object");
+      }
     } else {
       ev = new Event(options.getString("name"));
     }
@@ -91,22 +94,17 @@ public class RNDeltaDNAModule extends ReactContextBaseJavaModule {
 
   @ReactMethod
   public void engage(ReadableMap options, Callback callback) {
-    Engagement engagement = new Engagement(options.getString("name"));
+    Engagement engagement = null;
 
     if (hasValidKey("params", options)) {
-      ReadableMap params = options.getMap("params");
-
-      ReadableMapKeySetIterator iterator = params.keySetIterator();
-      if (iterator.hasNextKey()) {
-        while (iterator.hasNextKey()) {
-          try {
-            String key = iterator.nextKey();
-            engagement.putParam(key, RNConvertUtils.readableMapToJsonObject(params.getMap(key)));
-          } catch (JSONException exception) {
-            Log.e(TAG, "Error converting params object");
-          }
-        }
+      try {
+        JSONObject params = RNConvertUtils.readableMapToJsonObject(options.getMap("params"));
+        engagement = new Engagement(options.getString("name"), null, new Params(params));
+      } catch (JSONException exception) {
+        Log.e(TAG, "Error converting params object");
       }
+    } else {
+      engagement = new Engagement(options.getString("name"));
     }
 
     DDNA.instance().requestEngagement(engagement, new EngageListenerCallback(callback));
