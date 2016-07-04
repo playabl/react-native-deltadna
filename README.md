@@ -162,7 +162,7 @@ DeltaDNA.engage({
   alert(result);
 });
 ```
-Similar to sending an event with the difference that we can react to the response with a callback.
+Similar to sending an event with the difference that we can react to the response with a callback. Params can be added in the same way they are added to events.
 
 ### License
 
