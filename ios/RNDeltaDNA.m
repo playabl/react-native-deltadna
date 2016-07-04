@@ -79,21 +79,14 @@ RCT_EXPORT_METHOD(recordEvent: (NSDictionary *) eventDict)
         }
     }
 
-    NSDictionary *valuesDict = eventDict[@"values"];
-
-    if (valuesDict != nil) {
-        for (NSString *key in valuesDict) {
-            id value = [valuesDict objectForKey:key];
-            [event setValue:value forKey:key];
-        }
-    }
-
     [[DDNASDK sharedInstance] recordEvent:event];
 }
 
 RCT_EXPORT_METHOD(recordPushNotification: (NSDictionary *) payload didLaunch: (BOOL) didLaunch)
 {
-    [[DDNASDK sharedInstance] recordPushNotification:payload didLaunch:didLaunch];
+    if (payload != nil) {
+        [[DDNASDK sharedInstance] recordPushNotification:payload didLaunch:didLaunch];
+    }
 }
 
 RCT_EXPORT_METHOD(engage: (NSDictionary *) engageDict callback:(RCTResponseSenderBlock)callback)
@@ -106,15 +99,6 @@ RCT_EXPORT_METHOD(engage: (NSDictionary *) engageDict callback:(RCTResponseSende
         for (NSString *key in paramsDict) {
             id value = [paramsDict objectForKey:key];
             [engagement setParam:value forKey:key];
-        }
-    }
-
-    NSDictionary *valuesDict = engageDict[@"values"];
-
-    if (valuesDict != nil) {
-        for (NSString *key in valuesDict) {
-            id value = [valuesDict objectForKey:key];
-            [engagement setValue:value forKey:key];
         }
     }
 
