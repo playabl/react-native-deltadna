@@ -22,11 +22,13 @@ public class RNDeltaDNAModule extends ReactContextBaseJavaModule {
 
   private final String TAG = "RNDeltaDNA";
   private final ReactApplicationContext reactContext;
+  private Application mApplication;
   private boolean isInitialized = false;
 
-  public RNDeltaDNAModule(ReactApplicationContext reactContext) {
+  public RNDeltaDNAModule(ReactApplicationContext reactContext, Application app) {
     super(reactContext);
     this.reactContext = reactContext;
+    mApplication = app;
   }
 
   @Override
@@ -38,7 +40,7 @@ public class RNDeltaDNAModule extends ReactContextBaseJavaModule {
   public void start(ReadableMap options) {
     if (!isInitialized) {
       DDNA.initialise(new DDNA.Configuration(
-        getCurrentActivity().getApplication(),
+        mApplication,
         options.getString("environmentKey"),
         options.getString("collectURL"),
         options.getString("engageURL")));

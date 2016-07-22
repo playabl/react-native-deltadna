@@ -4,14 +4,13 @@
   "private": true,
   "scripts": {
     "start": "node node_modules/react-native/local-cli/cli.js start",
-    "postinstall": "rnpm link"
+    "download-deltadna-ios": "mkdir -p deltadna_ios && curl \"https://codeload.github.com/deltaDNA/ios-sdk/tar.gz/4.1.2\" -o deltadna_ios.tar.gz && tar -xzf deltadna_ios.tar.gz ios-sdk-4.1.2 && mv ios-sdk-4.1.2 deltadna_ios",
+    "link": "react-native link",
+    "postinstall": "npm run download-deltadna-ios && npm run link"
   },
   "dependencies": {
-    "react": "15.1.0",
-    "react-native": "0.28.0",
+    "react": "^15.2.1",
+    "react-native": "^0.29.2",
     "react-native-deltadna": "file:../"
-  },
-  "devDependencies": {
-    "rnpm": "^1.9.0"
   }
 }

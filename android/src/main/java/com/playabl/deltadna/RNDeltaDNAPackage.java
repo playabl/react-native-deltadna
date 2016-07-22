@@ -12,8 +12,8 @@ import com.facebook.react.bridge.JavaScriptModule;
 
 public class RNDeltaDNAPackage implements ReactPackage {
     @Override
-    public List<NativeModule> createNativeModules(ReactApplicationContext reactContext) {
-      return Arrays.<NativeModule>asList(new RNDeltaDNAModule(reactContext));
+    public List<NativeModule> createNativeModules(ReactApplicationContext reactContext, Application application) {
+      return Arrays.<NativeModule>asList(new RNDeltaDNAModule(reactContext, application));
     }
 
     @Override
