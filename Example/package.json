@@ -6,7 +6,7 @@
     "start": "node node_modules/react-native/local-cli/cli.js start",
     "download-deltadna-ios": "mkdir -p deltadna_ios && curl \"https://codeload.github.com/deltaDNA/ios-sdk/tar.gz/4.1.2\" -o deltadna_ios.tar.gz && tar -xzf deltadna_ios.tar.gz ios-sdk-4.1.2 && mv ios-sdk-4.1.2 deltadna_ios",
     "link": "react-native link",
-    "postinstall": "npm run download-deltadna-ios && npm run link"
+    "postinstall": "npm run link"
   },
   "dependencies": {
     "react": "^15.2.1",

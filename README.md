@@ -9,16 +9,16 @@ $ npm install react-native-deltadna
 (If you want to persist the installed package in your `package.json`, add `--save` to this command.)
 
 #### Mostly automatic installation
-If you haven't RNPM installed, install it with `npm install -g rnpm`.
+Call `react-native link` to link the native parts against your application and continue with `Additional configuration`.
 
-Call `rnpm link` to link the native parts against your application and continue with `Additional configuration`.
+For Android, go into `android/app/src/main/java/[...]/MainApplication.java` and update the call `new RNDeltaDNAPackage()` to `new RNDeltaDNAPackage(this)`.
 
 #### Manual installation
 
 ##### Android
 1. Open up `android/app/src/main/java/[...]/MainApplication.java`
   - Add `import com.playable.deltadna.RNDeltaDNAPackage;` to the imports at the top of the file
-  - Add `new RNDeltaDNAPackage()` to the list returned by the `getPackages()` method
+  - Add `new RNDeltaDNAPackage(this)` to the list returned by the `getPackages()` method
 2. Append the following lines to `android/settings.gradle`:
   	```
   	include ':react-native-deltadna'
