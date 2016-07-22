@@ -23,6 +23,7 @@
 		140ED2AC1D01E1AD002B40FF /* libReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 146834041AC3E56700842450 /* libReact.a */; };
 		146834051AC3E58100842450 /* libReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 146834041AC3E56700842450 /* libReact.a */; };
 		832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 832341B51AAA6A8300B99B32 /* libRCTText.a */; };
+		8FEF09931D422CDD005A3728 /* DeltaDNA.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8FEF09881D422AE0005A3728 /* DeltaDNA.framework */; };
 		E615E81F3C1544588B1A8CEA /* libRNDeltaDNA.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E08EE22B1739427EAAE44162 /* libRNDeltaDNA.a */; };
 /* End PBXBuildFile section */
 
@@ -111,30 +112,30 @@
 			remoteGlobalIDString = 134814201AA4EA6300B7C361;
 			remoteInfo = RNDeltaDNA;
 		};
-		8F16B3CF1D3FCC19008B0C17 /* PBXContainerItemProxy */ = {
+		8FEF09871D422AE0005A3728 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 8F16B3C81D3FCC19008B0C17 /* DeltaDNA.xcodeproj */;
+			containerPortal = 8FEF09801D422AE0005A3728 /* DeltaDNA.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 636555F71C60F4BD004153E7;
 			remoteInfo = "DeltaDNA iOS";
 		};
-		8F16B3D11D3FCC19008B0C17 /* PBXContainerItemProxy */ = {
+		8FEF09891D422AE0005A3728 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 8F16B3C81D3FCC19008B0C17 /* DeltaDNA.xcodeproj */;
+			containerPortal = 8FEF09801D422AE0005A3728 /* DeltaDNA.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 636556051C60F4F6004153E7;
 			remoteInfo = "DeltaDNA tvOS";
 		};
-		8F16B3D31D3FCC19008B0C17 /* PBXContainerItemProxy */ = {
+		8FEF098B1D422AE0005A3728 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 8F16B3C81D3FCC19008B0C17 /* DeltaDNA.xcodeproj */;
+			containerPortal = 8FEF09801D422AE0005A3728 /* DeltaDNA.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 6365567B1C60F683004153E7;
 			remoteInfo = "DeltaDNA iOS Tests";
 		};
-		8F16B3D51D3FCC19008B0C17 /* PBXContainerItemProxy */ = {
+		8FEF098D1D422AE0005A3728 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 8F16B3C81D3FCC19008B0C17 /* DeltaDNA.xcodeproj */;
+			containerPortal = 8FEF09801D422AE0005A3728 /* DeltaDNA.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 636556AB1C60FD6C004153E7;
 			remoteInfo = "DeltaDNA tvOS Tests";
@@ -163,7 +164,7 @@
 		146833FF1AC3E56700842450 /* React.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = React.xcodeproj; path = "../node_modules/react-native/React/React.xcodeproj"; sourceTree = "<group>"; };
 		78C398B01ACF4ADC00677621 /* RCTLinking.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTLinking.xcodeproj; path = "../node_modules/react-native/Libraries/LinkingIOS/RCTLinking.xcodeproj"; sourceTree = "<group>"; };
 		832341B01AAA6A8300B99B32 /* RCTText.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTText.xcodeproj; path = "../node_modules/react-native/Libraries/Text/RCTText.xcodeproj"; sourceTree = "<group>"; };
-		8F16B3C81D3FCC19008B0C17 /* DeltaDNA.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = DeltaDNA.xcodeproj; path = "../../../../Downloads/ios-sdk-4.1.2/DeltaDNA.xcodeproj"; sourceTree = "<group>"; };
+		8FEF09801D422AE0005A3728 /* DeltaDNA.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = DeltaDNA.xcodeproj; path = "../deltadna_ios/ios-sdk-4.1.2/DeltaDNA.xcodeproj"; sourceTree = "<group>"; };
 		E08EE22B1739427EAAE44162 /* libRNDeltaDNA.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNDeltaDNA.a; sourceTree = "<group>"; };
 		EF2AA722C3A94D538BAF76EB /* RNDeltaDNA.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNDeltaDNA.xcodeproj; path = "../node_modules/react-native-deltadna/ios/RNDeltaDNA.xcodeproj"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -181,6 +182,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8FEF09931D422CDD005A3728 /* DeltaDNA.framework in Frameworks */,
 				146834051AC3E58100842450 /* libReact.a in Frameworks */,
 				00C302E51ABCBA2D00DB3ED1 /* libRCTActionSheet.a in Frameworks */,
 				00C302E71ABCBA2D00DB3ED1 /* libRCTGeolocation.a in Frameworks */,
@@ -304,7 +306,7 @@
 		832341AE1AAA6A7D00B99B32 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
-				8F16B3C81D3FCC19008B0C17 /* DeltaDNA.xcodeproj */,
+				8FEF09801D422AE0005A3728 /* DeltaDNA.xcodeproj */,
 				146833FF1AC3E56700842450 /* React.xcodeproj */,
 				00C302A71ABCB8CE00DB3ED1 /* RCTActionSheet.xcodeproj */,
 				00C302B51ABCB90400DB3ED1 /* RCTGeolocation.xcodeproj */,
@@ -357,13 +359,13 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		8F16B3C91D3FCC19008B0C17 /* Products */ = {
+		8FEF09811D422AE0005A3728 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				8F16B3D01D3FCC19008B0C17 /* DeltaDNA.framework */,
-				8F16B3D21D3FCC19008B0C17 /* DeltaDNA.framework */,
-				8F16B3D41D3FCC19008B0C17 /* DeltaDNA iOS Tests.xctest */,
-				8F16B3D61D3FCC19008B0C17 /* DeltaDNA tvOS Tests.xctest */,
+				8FEF09881D422AE0005A3728 /* DeltaDNA.framework */,
+				8FEF098A1D422AE0005A3728 /* DeltaDNA.framework */,
+				8FEF098C1D422AE0005A3728 /* DeltaDNA iOS Tests.xctest */,
+				8FEF098E1D422AE0005A3728 /* DeltaDNA tvOS Tests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -435,8 +437,8 @@
 			projectDirPath = "";
 			projectReferences = (
 				{
-					ProductGroup = 8F16B3C91D3FCC19008B0C17 /* Products */;
-					ProjectRef = 8F16B3C81D3FCC19008B0C17 /* DeltaDNA.xcodeproj */;
+					ProductGroup = 8FEF09811D422AE0005A3728 /* Products */;
+					ProjectRef = 8FEF09801D422AE0005A3728 /* DeltaDNA.xcodeproj */;
 				},
 				{
 					ProductGroup = 00C302A81ABCB8CE00DB3ED1 /* Products */;
@@ -569,32 +571,32 @@
 			remoteRef = 8F16B3B71D3FCB17008B0C17 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		8F16B3D01D3FCC19008B0C17 /* DeltaDNA.framework */ = {
+		8FEF09881D422AE0005A3728 /* DeltaDNA.framework */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.framework;
 			path = DeltaDNA.framework;
-			remoteRef = 8F16B3CF1D3FCC19008B0C17 /* PBXContainerItemProxy */;
+			remoteRef = 8FEF09871D422AE0005A3728 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		8F16B3D21D3FCC19008B0C17 /* DeltaDNA.framework */ = {
+		8FEF098A1D422AE0005A3728 /* DeltaDNA.framework */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.framework;
 			path = DeltaDNA.framework;
-			remoteRef = 8F16B3D11D3FCC19008B0C17 /* PBXContainerItemProxy */;
+			remoteRef = 8FEF09891D422AE0005A3728 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		8F16B3D41D3FCC19008B0C17 /* DeltaDNA iOS Tests.xctest */ = {
+		8FEF098C1D422AE0005A3728 /* DeltaDNA iOS Tests.xctest */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.cfbundle;
 			path = "DeltaDNA iOS Tests.xctest";
-			remoteRef = 8F16B3D31D3FCC19008B0C17 /* PBXContainerItemProxy */;
+			remoteRef = 8FEF098B1D422AE0005A3728 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		8F16B3D61D3FCC19008B0C17 /* DeltaDNA tvOS Tests.xctest */ = {
+		8FEF098E1D422AE0005A3728 /* DeltaDNA tvOS Tests.xctest */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.cfbundle;
 			path = "DeltaDNA tvOS Tests.xctest";
-			remoteRef = 8F16B3D51D3FCC19008B0C17 /* PBXContainerItemProxy */;
+			remoteRef = 8FEF098D1D422AE0005A3728 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
@@ -725,6 +727,7 @@
 					"$(SRCROOT)/../node_modules/react-native-deltadna/ios/**",
 				);
 				INFOPLIST_FILE = Example/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = (
 					"$(inherited)",
@@ -746,6 +749,7 @@
 					"$(SRCROOT)/../node_modules/react-native-deltadna/ios/**",
 				);
 				INFOPLIST_FILE = Example/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = (
 					"$(inherited)",
