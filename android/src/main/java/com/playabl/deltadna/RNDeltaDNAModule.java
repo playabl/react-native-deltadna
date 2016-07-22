@@ -1,5 +1,7 @@
 package com.playabl.deltadna;
 
+import android.app.Application;
+
 import com.deltadna.android.sdk.DDNA;
 import com.deltadna.android.sdk.Event;
 import com.deltadna.android.sdk.Params;
@@ -22,6 +24,7 @@ public class RNDeltaDNAModule extends ReactContextBaseJavaModule {
 
   private final String TAG = "RNDeltaDNA";
   private final ReactApplicationContext reactContext;
+  private static Application mApplication = null;
   private boolean isInitialized = false;
 
   public RNDeltaDNAModule(ReactApplicationContext reactContext) {
@@ -34,11 +37,15 @@ public class RNDeltaDNAModule extends ReactContextBaseJavaModule {
     return "RNDeltaDNA";
   }
 
+  public static void setApplication(Application app) {
+    mApplication = app;
+  }
+
   @ReactMethod
   public void start(ReadableMap options) {
     if (!isInitialized) {
       DDNA.initialise(new DDNA.Configuration(
-        getCurrentActivity().getApplication(),
+        RNDeltaDNAModule.mApplication,
         options.getString("environmentKey"),
         options.getString("collectURL"),
         options.getString("engageURL")));

@@ -9,14 +9,12 @@ $ npm install react-native-deltadna
 (If you want to persist the installed package in your `package.json`, add `--save` to this command.)
 
 #### Mostly automatic installation
-If you haven't RNPM installed, install it with `npm install -g rnpm`.
-
-Call `rnpm link` to link the native parts against your application and continue with `Additional configuration`.
+Call `react-native link` to link the native parts against your application and continue with `Additional configuration`.
 
 #### Manual installation
 
 ##### Android
-1. Open up `android/app/src/main/java/[...]/MainActivity.java`
+1. Open up `android/app/src/main/java/[...]/MainApplication.java`
   - Add `import com.playable.deltadna.RNDeltaDNAPackage;` to the imports at the top of the file
   - Add `new RNDeltaDNAPackage()` to the list returned by the `getPackages()` method
 2. Append the following lines to `android/settings.gradle`:
@@ -39,6 +37,28 @@ Call `rnpm link` to link the native parts against your application and continue 
 Since this package relies on a third party library, there are a few additional things that need to be configured.
 
 ##### Android
+In order for DeltaDNA to be correctly initialized, we need to overwrite the `onCreate` method in the main application:
+```java
+package com.example;
+
+/* ... */
+
+import com.playabl.deltadna.RNDeltaDNAModule;
+
+public class MainApplication extends Application implements ReactApplication {
+
+  /* ... */
+
+  @Override
+  public void onCreate() {
+    super.onCreate();
+
+    RNDeltaDNAModule.setApplication(this);
+  }
+}
+
+```
+
 DeltaDNA uses their own repository, we need to add it to the `android/build.grade` file in the `allprojects -> repositories` section. In the end, this section should look something like this:
 ```
 allprojects {
@@ -82,6 +102,8 @@ To run the example, add `credentials.json` to root level of the example folder. 
   "engageURL": "<EngageURL here please>"
 }
 ```
+
+For iOS, run `npm run download-deltadna-ios` to set up the DeltaDNA SDK in the example directory. The example project is expecting the SDK to be in this folder.
 
 ### Methods
 With the DeltaDNA's iOS and Android SDK being slightly different in terms of their API, this library tends to implement a common superset of both APIs which follows the API of the iOS SDK more closely than the Android SDK.
