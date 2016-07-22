@@ -103,6 +103,8 @@ To run the example, add `credentials.json` to root level of the example folder. 
 }
 ```
 
+For iOS, run `npm run download-deltadna-ios` to set up the DeltaDNA SDK in the example directory. The example project is expecting the SDK to be in this folder.
+
 ### Methods
 With the DeltaDNA's iOS and Android SDK being slightly different in terms of their API, this library tends to implement a common superset of both APIs which follows the API of the iOS SDK more closely than the Android SDK.
 
