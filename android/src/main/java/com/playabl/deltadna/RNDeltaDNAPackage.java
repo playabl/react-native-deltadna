@@ -1,7 +1,5 @@
 package com.playabl.deltadna;
 
-import android.app.Application;
-
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -13,8 +11,9 @@ import com.facebook.react.uimanager.ViewManager;
 import com.facebook.react.bridge.JavaScriptModule;
 
 public class RNDeltaDNAPackage implements ReactPackage {
-    public List<NativeModule> createNativeModules(ReactApplicationContext reactContext, Application application) {
-      return Arrays.<NativeModule>asList(new RNDeltaDNAModule(reactContext, application));
+    @Override
+    public List<NativeModule> createNativeModules(ReactApplicationContext reactContext) {
+      return Arrays.<NativeModule>asList(new RNDeltaDNAModule(reactContext));
     }
 
     @Override

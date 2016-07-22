@@ -13,6 +13,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import com.playabl.deltadna.RNDeltaDNAPackage;
+import com.playabl.deltadna.RNDeltaDNAModule;
 
 public class MainApplication extends Application implements ReactApplication {
 
@@ -26,7 +27,7 @@ public class MainApplication extends Application implements ReactApplication {
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
           new MainReactPackage(),
-          new RNDeltaDNAPackage(this)
+          new RNDeltaDNAPackage()
       );
     }
   };
@@ -34,5 +35,12 @@ public class MainApplication extends Application implements ReactApplication {
   @Override
   public ReactNativeHost getReactNativeHost() {
       return mReactNativeHost;
+  }
+
+  @Override
+  public void onCreate() {
+    super.onCreate();
+
+    RNDeltaDNAModule.setApplication(this);
   }
 }

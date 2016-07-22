@@ -11,14 +11,12 @@ $ npm install react-native-deltadna
 #### Mostly automatic installation
 Call `react-native link` to link the native parts against your application and continue with `Additional configuration`.
 
-For Android, go into `android/app/src/main/java/[...]/MainApplication.java` and update the call `new RNDeltaDNAPackage()` to `new RNDeltaDNAPackage(this)`.
-
 #### Manual installation
 
 ##### Android
 1. Open up `android/app/src/main/java/[...]/MainApplication.java`
   - Add `import com.playable.deltadna.RNDeltaDNAPackage;` to the imports at the top of the file
-  - Add `new RNDeltaDNAPackage(this)` to the list returned by the `getPackages()` method
+  - Add `new RNDeltaDNAPackage()` to the list returned by the `getPackages()` method
 2. Append the following lines to `android/settings.gradle`:
   	```
   	include ':react-native-deltadna'
@@ -39,6 +37,28 @@ For Android, go into `android/app/src/main/java/[...]/MainApplication.java` and 
 Since this package relies on a third party library, there are a few additional things that need to be configured.
 
 ##### Android
+In order for DeltaDNA to be correctly initialized, we need to overwrite the `onCreate` method in the main application:
+```java
+package com.example;
+
+/* ... */
+
+import com.playabl.deltadna.RNDeltaDNAModule;
+
+public class MainApplication extends Application implements ReactApplication {
+
+  /* ... */
+
+  @Override
+  public void onCreate() {
+    super.onCreate();
+
+    RNDeltaDNAModule.setApplication(this);
+  }
+}
+
+```
+
 DeltaDNA uses their own repository, we need to add it to the `android/build.grade` file in the `allprojects -> repositories` section. In the end, this section should look something like this:
 ```
 allprojects {
