@@ -1,5 +1,7 @@
 package com.playabl.deltadna;
 
+import android.app.Application;
+
 import com.deltadna.android.sdk.DDNA;
 import com.deltadna.android.sdk.Event;
 import com.deltadna.android.sdk.Params;
