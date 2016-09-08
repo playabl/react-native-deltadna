@@ -78,9 +78,9 @@ allprojects {
 
 ##### iOS
 For iOS, the application needs to link against `DeltaDNA`. This can be done in different ways:
+- Use CocoaPods and follow the instructions from http://docs.deltadna.com/advanced-integration/ios-sdk/. This library is catering to this use case by default
 - Add the compiled `DeltaDNA.framework` to your application by compiling the `DeltaDNA` library first and then adding it as a dependency into your application
 - Add `DeltaDNA.xcodeproj` as a dependency into your application
-- Use CocoaPods and follow the instructions from http://docs.deltadna.com/advanced-integration/ios-sdk/
 
 Allow HTTP communication in your iOS app by setting the following keys in your `Info.plist` file:
 ```xml
