@@ -24,6 +24,9 @@ RCT_EXPORT_MODULE()
 
 RCT_EXPORT_METHOD(start: (NSDictionary *) dict)
 {
+    if (dict[@"settings"]) {
+        [[[DDNASDK sharedInstance] settings] setValuesForKeysWithDictionary:dict[@"options"]];
+    }
     if (dict[@"userID"] == nil) {
         [self startWithEnvironmentKey:dict[@"environmentKey"] collectURL:dict[@"collectURL"] engageURL:dict[@"engageURL"]];
     } else {
