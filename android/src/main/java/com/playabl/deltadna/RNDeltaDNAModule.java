@@ -2,9 +2,12 @@ package com.playabl.deltadna;
 
 import android.app.Application;
 
+import java.util.Map;
+
 import com.deltadna.android.sdk.DDNA;
 import com.deltadna.android.sdk.Event;
 import com.deltadna.android.sdk.Params;
+import com.deltadna.android.sdk.helpers.Settings;
 import com.deltadna.android.sdk.Engagement;
 import com.deltadna.android.sdk.listeners.EngageListener;
 
@@ -42,13 +45,44 @@ public class RNDeltaDNAModule extends ReactContextBaseJavaModule {
   }
 
   @ReactMethod
-  public void start(ReadableMap options) {
+  public void start(final ReadableMap options) {
     if (!isInitialized) {
       DDNA.initialise(new DDNA.Configuration(
         RNDeltaDNAModule.mApplication,
         options.getString("environmentKey"),
         options.getString("collectURL"),
-        options.getString("engageURL")));
+        options.getString("engageURL")
+      ).withSettings(new DDNA.SettingsModifier() {
+        @Override
+        public void modify(Settings settings) {
+          ReadableMap s = options.getMap("settings");
+          if (s.hasKey("onStartSendGameStartedEvent")) {
+            settings.setOnInitSendGameStartedEvent(s.getBoolean("onStartSendGameStartedEvent"));
+          }
+          if (s.hasKey("backgroundEventUpload")) {
+            settings.setBackgroundEventUpload(s.getBoolean("backgroundEventUpload"));
+          }
+          if (s.hasKey("backgroundEventUploadStartDelaySeconds")) {
+            settings.setBackgroundEventUploadStartDelaySeconds(s.getInt("backgroundEventUploadStartDelaySeconds"));
+          }
+          if (s.hasKey("backgroundEventUploadRepeatRateSeconds")) {
+            settings.setBackgroundEventUploadRepeatRateSeconds(s.getInt("backgroundEventUploadRepeatRateSeconds"));
+          }
+          if (s.hasKey("onFirstRunSendNewPlayerEvent")) {
+            settings.setOnFirstRunSendNewPlayerEvent(s.getBoolean("onFirstRunSendNewPlayerEvent"));
+          }
+          if (s.hasKey("httpRequestRetryDelaySeconds")) {
+            settings.setHttpRequestRetryDelay(s.getInt("httpRequestRetryDelaySeconds"));
+          }
+          if (s.hasKey("httpRequestMaxTries")) {
+            settings.setHttpRequestMaxRetries(s.getInt("httpRequestMaxTries"));
+          }
+          if (s.hasKey("onStartSendClientDeviceEvent")) {
+            settings.setOnInitSendClientDeviceEvent(s.getBoolean("onStartSendClientDeviceEvent"));
+          }
+        }
+      })
+      );
 
       isInitialized = true;
     }
