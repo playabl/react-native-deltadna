@@ -10,6 +10,7 @@ import com.deltadna.android.sdk.Params;
 import com.deltadna.android.sdk.helpers.Settings;
 import com.deltadna.android.sdk.Engagement;
 import com.deltadna.android.sdk.listeners.EngageListener;
+import com.deltadna.android.sdk.Product;
 
 import android.content.ActivityNotFoundException;
 import android.util.Log;
@@ -126,6 +127,11 @@ public class RNDeltaDNAModule extends ReactContextBaseJavaModule {
     }
 
     DDNA.instance().recordEvent(ev);
+  }
+
+  @ReactMethod
+  public void convertCurrencyCode(String code, float value, Promise promise) {
+    promise.resolve(Product.convertCurrency(DDNA.instance(), code, value));
   }
 
   @ReactMethod
