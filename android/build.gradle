@@ -20,5 +20,5 @@ android {
 
 dependencies {
     compile 'com.facebook.react:react-native:+'
-    compile 'com.deltadna.android:deltadna-sdk:4.1.6'
+    compile 'com.deltadna.android:deltadna-sdk:4.2.7'
 }
