@@ -110,4 +110,11 @@ RCT_EXPORT_METHOD(engage: (NSDictionary *) engageDict callback:(RCTResponseSende
     }];
 }
 
+RCT_EXPORT_METHOD(convertCurrencyCode: (NSString *)code value:(NSNumber * _Nonnull)value resolver:(RCTPromiseResolveBlock)resolve rejecter:(RCTPromiseRejectBlock)reject)
+{
+    NSDecimalNumber *decValue = [NSDecimalNumber decimalNumberWithDecimal:[value decimalValue]];
+    NSInteger result = [DDNAProduct convertCurrencyCode:code value:decValue];
+    resolve([NSNumber numberWithInteger:result]);
+}
+
 @end
