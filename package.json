@@ -1,7 +1,7 @@
 {
   "name": "react-native-deltadna",
   "description": "DeltaDNA integration for React Native",
-  "version": "4.1.0",
+  "version": "4.1.1",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/playabl/react-native-deltadna.git"
